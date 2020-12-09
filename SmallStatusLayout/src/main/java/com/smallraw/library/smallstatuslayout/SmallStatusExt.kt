@@ -6,9 +6,9 @@ import android.view.View
 fun View.bindSmallState(
     onRetryEventListener: OnRetryEventListener = OnRetryEventListener { },
     onCloseEventListener: OnCloseEventListener = OnCloseEventListener { }
-) = SmallStatus.bind(this, onRetryEventListener, onCloseEventListener)
+) = SmallStatus.bindTarget(this, onRetryEventListener, onCloseEventListener)
 
 fun Activity.bindSmallState(
     onRetryEventListener: OnRetryEventListener = OnRetryEventListener { },
     onCloseEventListener: OnCloseEventListener = OnCloseEventListener { }
-) = SmallStatus.bind(this, onRetryEventListener, onCloseEventListener)
+) = SmallStatus.bindTarget(this, onRetryEventListener, onCloseEventListener)

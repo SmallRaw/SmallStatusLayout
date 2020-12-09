@@ -6,8 +6,8 @@ import android.view.View
 import com.smallraw.library.smallstatuslayout.SmallStatusContainer
 import com.smallraw.library.smallstatuslayout.StatePage
 
-class SuccessState : StatePage() {
-    override fun onCreateMultiStateView(
+class StateSuccess : StatePage() {
+    override fun onCreateStatePageView(
         context: Context,
         inflater: LayoutInflater,
         container: SmallStatusContainer
@@ -15,7 +15,7 @@ class SuccessState : StatePage() {
         return View(context)
     }
 
-    override fun onMultiStateViewCreate(view: View) {
+    override fun onStateViewCreate(view: View) {
     }
 
     override fun enableReload(): Boolean {

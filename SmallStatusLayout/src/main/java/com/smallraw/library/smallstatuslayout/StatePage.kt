@@ -5,13 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 
 abstract class StatePage {
-    abstract fun onCreateMultiStateView(
+    abstract fun onCreateStatePageView(
         context: Context,
         inflater: LayoutInflater,
         container: SmallStatusContainer
     ): View
 
-    abstract fun onMultiStateViewCreate(view: View)
+    abstract fun onStateViewCreate(view: View)
 
     abstract fun enableReload(): Boolean
 

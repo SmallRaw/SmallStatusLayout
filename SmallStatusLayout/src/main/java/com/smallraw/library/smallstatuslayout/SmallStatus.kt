@@ -1,38 +1,46 @@
 package com.smallraw.library.smallstatuslayout
 
 import android.app.Activity
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 
 object SmallStatus {
     @JvmStatic
-    fun bind(targetView: View) {
-        bind(targetView) { }
+    fun bindTarget(targetView: View): SmallStatusContainer {
+        return bindTarget(targetView) { }
     }
 
     @JvmStatic
-    fun bind(
+    fun bindTarget(
         targetView: View,
         retryEventListener: OnRetryEventListener
-    ) {
-        bind(targetView, retryEventListener, {})
+    ): SmallStatusContainer {
+        return bindTarget(targetView, retryEventListener, {})
     }
 
     @JvmStatic
-    fun bind(
+    fun bindTarget(
         targetView: View,
         onRetryEventListener: OnRetryEventListener,
         onCloseEventListener: OnCloseEventListener?
     ): SmallStatusContainer {
         val parent = targetView.parent as ViewGroup?
-        var targetViewIndex = 0
-        val smallStatusContainer =
-            SmallStatusContainer(
-                targetView.context,
-                targetView,
-                onRetryEventListener,
-                onCloseEventListener
+        if (parent?.javaClass?.name == "androidx.constraintlayout.widget.ConstraintLayout"
+            || parent?.javaClass?.name == "android.support.constraint.ConstraintLayout"
+        ) {
+            Log.w(
+                "SmallStatusLayout",
+                "ConstraintLayout 布局因为约束的问题，推荐使用在 XML 布局直接使用 SmallStatusLayout."
             )
+        }
+        var targetViewIndex = 0
+        val statusContainer = SmallStatusContainer(
+            targetView.context,
+            targetView,
+            onRetryEventListener,
+            onCloseEventListener
+        )
         parent?.let { targetViewParent ->
             for (i in 0 until targetViewParent.childCount) {
                 if (targetViewParent.getChildAt(i) == targetView) {
@@ -40,30 +48,31 @@ object SmallStatus {
                     break
                 }
             }
+
             targetViewParent.removeView(targetView)
-            targetViewParent.addView(smallStatusContainer, targetViewIndex, targetView.layoutParams)
+            targetViewParent.addView(statusContainer, targetViewIndex, targetView.layoutParams)
         }
-        smallStatusContainer.init()
-        return smallStatusContainer
+        statusContainer.init()
+        return statusContainer
     }
 
     @JvmStatic
-    fun bind(
+    fun bindTarget(
         activity: Activity,
     ): SmallStatusContainer {
-        return bind(activity) { }
+        return bindTarget(activity) { }
     }
 
     @JvmStatic
-    fun bind(
+    fun bindTarget(
         activity: Activity,
         onRetryEventListener: OnRetryEventListener
     ): SmallStatusContainer {
-        return bind(activity, onRetryEventListener) { }
+        return bindTarget(activity, onRetryEventListener) { }
     }
 
     @JvmStatic
-    fun bind(
+    fun bindTarget(
         activity: Activity,
         onRetryEventListener: OnRetryEventListener,
         onCloseEventListener: OnCloseEventListener?
@@ -73,15 +82,14 @@ object SmallStatus {
         val oldContent: View = targetView.getChildAt(targetViewIndex)
         targetView.removeView(oldContent)
         val oldLayoutParams = oldContent.layoutParams
-        val multiStateContainer =
-            SmallStatusContainer(
-                oldContent.context,
-                oldContent,
-                onRetryEventListener,
-                onCloseEventListener
-            )
-        targetView.addView(multiStateContainer, targetViewIndex, oldLayoutParams)
-        multiStateContainer.init()
-        return multiStateContainer
+        val stateContainer = SmallStatusContainer(
+            oldContent.context,
+            oldContent,
+            onRetryEventListener,
+            onCloseEventListener
+        )
+        targetView.addView(stateContainer, targetViewIndex, oldLayoutParams)
+        stateContainer.init()
+        return stateContainer
     }
 }
