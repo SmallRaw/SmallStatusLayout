@@ -4,13 +4,9 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
-import com.smallraw.library.smallstatuslayout.R
-import com.smallraw.library.smallstatuslayout.SmallStatusContainer
-import com.smallraw.library.smallstatuslayout.StatePage
+import com.smallraw.library.smallstatuslayout.*
 
 class StateLoading : StatePage() {
-    private lateinit var tvLoadingMsg: TextView
-
     override fun onCreateStatePageView(
         context: Context,
         inflater: LayoutInflater,
@@ -19,8 +15,11 @@ class StateLoading : StatePage() {
         return inflater.inflate(R.layout.small_state_loading, container, false)
     }
 
-    override fun onStateViewCreate(view: View) {
-        tvLoadingMsg = view.findViewById(R.id.tv_loading_msg)
+    override fun onConfigStateView(view: View, config: SmallStateConfig?) {
+        val tvLoadingMsg = view.findViewById<TextView>(R.id.tv_loading_msg)
+        (config ?: SmallStatus.globalConfig).apply {
+            tvLoadingMsg.text = loadingMsg
+        }
     }
 
     override fun enableReload(): Boolean {

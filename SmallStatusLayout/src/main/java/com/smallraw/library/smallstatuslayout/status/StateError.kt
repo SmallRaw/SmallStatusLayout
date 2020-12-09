@@ -5,14 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import com.smallraw.library.smallstatuslayout.R
-import com.smallraw.library.smallstatuslayout.SmallStatusContainer
-import com.smallraw.library.smallstatuslayout.StatePage
+import com.smallraw.library.smallstatuslayout.*
 
 class StateError : StatePage() {
-
-    private lateinit var tvErrorMsg: TextView
-    private lateinit var imgError: ImageView
     private lateinit var tvRetry: TextView
 
     override fun onCreateStatePageView(
@@ -23,10 +18,15 @@ class StateError : StatePage() {
         return inflater.inflate(R.layout.small_state_error, container, false)
     }
 
-    override fun onStateViewCreate(view: View) {
-        tvErrorMsg = view.findViewById(R.id.tv_error_msg)
-        imgError = view.findViewById(R.id.img_error)
+    override fun onConfigStateView(view: View, config: SmallStateConfig?) {
+        val tvErrorMsg = view.findViewById<TextView>(R.id.tv_error_msg)
+        val imgError = view.findViewById<ImageView>(R.id.img_error)
         tvRetry = view.findViewById(R.id.tv_retry)
+        (config ?: SmallStatus.globalConfig).apply {
+            tvErrorMsg.text = errorMsg
+            imgError.setImageResource(errorIcon)
+            tvRetry.text = retryMsg
+        }
     }
 
     override fun enableReload() = true

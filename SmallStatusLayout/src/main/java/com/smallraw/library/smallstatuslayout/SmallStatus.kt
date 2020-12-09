@@ -7,8 +7,10 @@ import android.view.ViewGroup
 
 object SmallStatus {
     @JvmStatic
-    fun bindTarget(targetView: View): SmallStatusContainer {
-        return bindTarget(targetView) { }
+    fun bindTarget(
+        targetView: View
+    ): SmallStatusContainer {
+        return bindTarget(targetView, {}, {})
     }
 
     @JvmStatic
@@ -23,7 +25,8 @@ object SmallStatus {
     fun bindTarget(
         targetView: View,
         onRetryEventListener: OnRetryEventListener,
-        onCloseEventListener: OnCloseEventListener?
+        onCloseEventListener: OnCloseEventListener?,
+        config: SmallStateConfig? = globalConfig
     ): SmallStatusContainer {
         val parent = targetView.parent as ViewGroup?
         if (parent?.javaClass?.name == "androidx.constraintlayout.widget.ConstraintLayout"
@@ -39,7 +42,8 @@ object SmallStatus {
             targetView.context,
             targetView,
             onRetryEventListener,
-            onCloseEventListener
+            onCloseEventListener,
+            config
         )
         parent?.let { targetViewParent ->
             for (i in 0 until targetViewParent.childCount) {
@@ -58,9 +62,9 @@ object SmallStatus {
 
     @JvmStatic
     fun bindTarget(
-        activity: Activity,
+        activity: Activity
     ): SmallStatusContainer {
-        return bindTarget(activity) { }
+        return bindTarget(activity, {}, {})
     }
 
     @JvmStatic
@@ -68,14 +72,15 @@ object SmallStatus {
         activity: Activity,
         onRetryEventListener: OnRetryEventListener
     ): SmallStatusContainer {
-        return bindTarget(activity, onRetryEventListener) { }
+        return bindTarget(activity, onRetryEventListener, {})
     }
 
     @JvmStatic
     fun bindTarget(
         activity: Activity,
         onRetryEventListener: OnRetryEventListener,
-        onCloseEventListener: OnCloseEventListener?
+        onCloseEventListener: OnCloseEventListener?,
+        config: SmallStateConfig? = globalConfig
     ): SmallStatusContainer {
         val targetView = activity.findViewById<ViewGroup>(android.R.id.content)
         val targetViewIndex = 0
@@ -86,10 +91,18 @@ object SmallStatus {
             oldContent.context,
             oldContent,
             onRetryEventListener,
-            onCloseEventListener
+            onCloseEventListener,
+            config
         )
         targetView.addView(stateContainer, targetViewIndex, oldLayoutParams)
         stateContainer.init()
         return stateContainer
+    }
+
+    var globalConfig: SmallStateConfig = SmallStateConfig()
+
+    @JvmStatic
+    fun globalConfig(config: SmallStateConfig) {
+        this.globalConfig = config
     }
 }

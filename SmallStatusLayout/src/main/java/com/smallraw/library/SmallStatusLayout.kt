@@ -14,14 +14,14 @@ class SmallStatusLayout : FrameLayout {
     private var mOriginalView: View? = null
     private var mOnRetryEventListener: OnRetryEventListener? = null
     private var mOnCloseEventListener: OnCloseEventListener? = null
-    private var mConfig: SmallStatusContainerConfig? = null
+    private var mConfig: SmallStateConfig? = null
 
     constructor(
         context: Context,
         originalView: View,
         onRetryEventListener: OnRetryEventListener? = null,
         onCloseEventListener: OnCloseEventListener? = null,
-        config: SmallStatusContainerConfig? = null
+        config: SmallStateConfig? = null
     ) : super(context) {
         mOriginalView = originalView
         mOnRetryEventListener = onRetryEventListener
@@ -36,7 +36,7 @@ class SmallStatusLayout : FrameLayout {
     private var mStatePool: MutableMap<Class<out StatePage>, StatePage> = mutableMapOf()
 
     private var animator = ValueAnimator.ofFloat(0.0f, 1.0f).apply {
-        duration = mConfig?.animatorDuration ?: 400
+        duration = mConfig?.alphaDuration ?: SmallStatus.globalConfig.alphaDuration
     }
 
     fun init() {
@@ -51,21 +51,36 @@ class SmallStatusLayout : FrameLayout {
         mOnCloseEventListener = onCloseEventListener
     }
 
-    fun setConfig(config: SmallStatusContainerConfig) {
+    fun setConfig(config: SmallStateConfig) {
         mConfig = config
     }
 
     inline fun <reified T : StatePage> show(noinline notify: (T) -> Unit = {}) {
-        show(T::class.java, notify)
+        show(T::class.java, false, notify)
     }
 
-    fun <T : StatePage> show(clazz: Class<T>) {
-        show(clazz, onNotifyListener = { })
+    inline fun <reified T : StatePage> show(
+        forcedRefresh: Boolean,
+        noinline notify: (T) -> Unit = {}
+    ) {
+        show(T::class.java, forcedRefresh, notify)
+    }
+
+    fun <T : StatePage> show(clazz: Class<T>, forcedRefresh: Boolean = false) {
+        show(clazz, forcedRefresh, onNotifyListener = { })
+    }
+
+    fun <T : StatePage> show(
+        clazz: Class<T>,
+        onNotifyListener: OnNotifyListener<T> = OnNotifyListener { }
+    ) {
+        show(clazz, false, onNotifyListener)
     }
 
     @Throws(IllegalArgumentException::class)
     fun <T : StatePage> show(
         clazz: Class<T>,
+        forcedRefresh: Boolean = false,
         onNotifyListener: OnNotifyListener<T> = OnNotifyListener { }
     ) {
         findStatePage(clazz)?.let { statePage ->
@@ -95,8 +110,8 @@ class SmallStatusLayout : FrameLayout {
             } else {
                 mOriginalView?.visibility = View.GONE
                 val currentStateView =
-                    statePage.onCreateStatePageView(context, LayoutInflater.from(context), this)
-                statePage.onStateViewCreate(currentStateView)
+                    statePage.createStatePageView(context, LayoutInflater.from(context), this)
+                statePage.configStateView(currentStateView, mConfig, forcedRefresh)
                 val retryView = statePage.bindRetryView()
                 if (statePage.enableReload()) {
                     if (retryView != null) {

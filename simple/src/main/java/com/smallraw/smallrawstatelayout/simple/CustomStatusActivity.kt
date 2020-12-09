@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.DrawableRes
+import com.smallraw.library.smallstatuslayout.SmallStateConfig
 import com.smallraw.library.smallstatuslayout.SmallStatus
 import com.smallraw.library.smallstatuslayout.SmallStatusContainer
 import com.smallraw.library.smallstatuslayout.StatePage
@@ -28,7 +29,7 @@ class StateCustom : StatePage() {
         return inflater.inflate(R.layout.small_state_custom, container, false)
     }
 
-    override fun onStateViewCreate(view: View) {
+    override fun onConfigStateView(view: View, config: SmallStateConfig?) {
     }
 
     override fun enableReload(): Boolean = false
@@ -44,7 +45,7 @@ class StateCustom1 : StatePage() {
         return inflater.inflate(R.layout.small_state_custom, container, false)
     }
 
-    override fun onStateViewCreate(view: View) {
+    override fun onConfigStateView(view: View, config: SmallStateConfig?) {
         tvCustomMsg = view.findViewById(R.id.tv_custom_msg)
     }
 
