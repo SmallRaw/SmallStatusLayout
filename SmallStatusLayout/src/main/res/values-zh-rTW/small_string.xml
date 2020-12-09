@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="msg_small_status_error">哎呀,出錯了</string>
+    <string name="msg_small_status_empty">這裡什麼都沒有</string>
+    <string name="msg_small_status_retry">點擊重試</string>
+    <string name="msg_small_status_loading">加載中...</string>
+</resources>

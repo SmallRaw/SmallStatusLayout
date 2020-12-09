@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="msg_small_status_error">おっと！何かが間違っていた</string>
+    <string name="msg_small_status_empty">ここには何もない</string>
+    <string name="msg_small_status_retry">再試行をクリックします</string>
+    <string name="msg_small_status_loading">読み込んでいます...</string>
+</resources>

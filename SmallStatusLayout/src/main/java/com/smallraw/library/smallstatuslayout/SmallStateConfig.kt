@@ -1,34 +1,45 @@
 package com.smallraw.library.smallstatuslayout
 
 import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 
 data class SmallStateConfig(
-    val errorMsg: String = "哎呀,出错了",
+    @StringRes
+    val errorMsg: Int = R.string.msg_small_status_error,
     @DrawableRes
     val errorIcon: Int = R.drawable.ic_small_state_error,
-    val emptyMsg: String = "这里什么都没有",
+    @StringRes
+    val emptyMsg: Int = R.string.msg_small_status_empty,
     @DrawableRes
     val emptyIcon: Int = R.drawable.ic_small_state_empty,
-    val retryMsg: String = "点击重试",
-    val loadingMsg: String = "loading...",
+    @StringRes
+    val retryMsg: Int = R.string.msg_small_status_retry,
+    @StringRes
+    val loadingMsg: Int = R.string.msg_small_status_loading,
     var alphaDuration: Long = 500
 ) {
 
     class Builder {
-        private var errorMsg: String = "加载出错了"
+        @StringRes
+        private var errorMsg: Int = R.string.msg_small_status_error
 
         @DrawableRes
         private var errorIcon: Int = R.drawable.ic_small_state_error
-        private var emptyMsg: String = "没有数据"
 
-        private var retryMsg: String = "点击重试"
+        @StringRes
+        private var emptyMsg: Int = R.string.msg_small_status_empty
+
+        @StringRes
+        private var retryMsg: Int = R.string.msg_small_status_retry
 
         @DrawableRes
         private var emptyIcon: Int = R.drawable.ic_small_state_empty
-        private var loadingMsg: String = "loading..."
+
+        @StringRes
+        private var loadingMsg: Int = R.string.msg_small_status_loading
         private var alphaDuration: Long = 400
 
-        fun errorMsg(msg: String): Builder {
+        fun errorMsg(@StringRes msg: Int): Builder {
             this.errorMsg = msg
             return this
         }
@@ -38,7 +49,7 @@ data class SmallStateConfig(
             return this
         }
 
-        fun emptyMsg(msg: String): Builder {
+        fun emptyMsg(@StringRes msg: Int): Builder {
             this.emptyMsg = msg
             return this
         }
@@ -48,12 +59,12 @@ data class SmallStateConfig(
             return this
         }
 
-        fun retryMsg(msg: String): Builder {
+        fun retryMsg(@StringRes msg: Int): Builder {
             this.retryMsg = msg
             return this
         }
 
-        fun loadingMsg(msg: String): Builder {
+        fun loadingMsg(@StringRes msg: Int): Builder {
             this.loadingMsg = msg
             return this
         }

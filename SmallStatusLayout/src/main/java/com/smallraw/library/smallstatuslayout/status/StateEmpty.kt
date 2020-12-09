@@ -24,7 +24,7 @@ class StateEmpty : StatePage() {
         val imgEmpty = view.findViewById<ImageView>(R.id.img_empty)
 
         (config ?: SmallStatus.globalConfig).apply {
-            tvEmptyMsg.text = errorMsg
+            tvEmptyMsg.setText(errorMsg)
             imgEmpty.setImageResource(errorIcon)
         }
     }

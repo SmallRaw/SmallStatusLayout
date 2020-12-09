@@ -18,7 +18,7 @@ class StateLoading : StatePage() {
     override fun onConfigStateView(view: View, config: SmallStateConfig?) {
         val tvLoadingMsg = view.findViewById<TextView>(R.id.tv_loading_msg)
         (config ?: SmallStatus.globalConfig).apply {
-            tvLoadingMsg.text = loadingMsg
+            tvLoadingMsg.setText(loadingMsg)
         }
     }
 

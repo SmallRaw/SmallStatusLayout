@@ -23,9 +23,9 @@ class StateError : StatePage() {
         val imgError = view.findViewById<ImageView>(R.id.img_error)
         tvRetry = view.findViewById(R.id.tv_retry)
         (config ?: SmallStatus.globalConfig).apply {
-            tvErrorMsg.text = errorMsg
+            tvErrorMsg.setText(errorMsg)
             imgError.setImageResource(errorIcon)
-            tvRetry.text = retryMsg
+            tvRetry.setText(retryMsg)
         }
     }
 
