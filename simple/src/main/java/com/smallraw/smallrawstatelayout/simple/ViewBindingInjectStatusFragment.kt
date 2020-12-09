@@ -24,7 +24,9 @@ class ViewBindingInjectStatusFragment : Fragment(), CoroutineScope by MainScope(
         savedInstanceState: Bundle?
     ): View {
         mBind = FragmentInjectFragmentStatusBinding.inflate(inflater, container, false)
-        mSmallStatus = SmallStatus.bindTarget(mBind.root)
+        mSmallStatus = SmallStatus.bindTarget(mBind.root) {
+            it.show<StateSuccess>()
+        }
         return mSmallStatus
     }
 

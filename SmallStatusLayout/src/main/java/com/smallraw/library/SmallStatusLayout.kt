@@ -36,7 +36,7 @@ class SmallStatusLayout : FrameLayout {
     private var mStatePool: MutableMap<Class<out StatePage>, StatePage> = mutableMapOf()
 
     private var animator = ValueAnimator.ofFloat(0.0f, 1.0f).apply {
-        duration = mConfig?.animatorDuration ?: 600
+        duration = mConfig?.animatorDuration ?: 400
     }
 
     fun init() {

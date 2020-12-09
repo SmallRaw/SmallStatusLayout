@@ -36,10 +36,10 @@ class MainActivity : AppCompatActivity() {
                 ViewBindingInjectFragmentActivity::class.java
             }
             R.id.btnRecyclerViewStatus -> {
-                ViewInjectStatusActivity::class.java
+                RecyclerViewInjectStatusActivity::class.java
             }
             R.id.btnCustomStatus -> {
-                ViewInjectStatusActivity::class.java
+                CustomStatusActivity::class.java
             }
             else -> throw IllegalArgumentException()
         }

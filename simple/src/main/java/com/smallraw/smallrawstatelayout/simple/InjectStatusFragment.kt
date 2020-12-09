@@ -22,7 +22,9 @@ class InjectStatusFragment : Fragment(), CoroutineScope by MainScope() {
         savedInstanceState: Bundle?
     ): View {
         val inflate = inflater.inflate(R.layout.fragment_inject_fragment_status, container, false)
-        mRootView = SmallStatus.bindTarget(inflate)
+        mRootView = SmallStatus.bindTarget(inflate) {
+            it.show<StateSuccess>()
+        }
         return mRootView
     }
 

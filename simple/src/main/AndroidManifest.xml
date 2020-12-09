@@ -10,11 +10,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SmallStatusLayout">
-        <activity android:name=".ViewInjectStatusActivity"></activity>
-        <activity android:name=".ViewStatusActivity"></activity>
-        <activity android:name=".ActivityInjectStatusActivity"></activity>
-        <activity android:name=".InjectFragmentActivity"></activity>
-        <activity android:name=".ViewBindingInjectFragmentActivity"></activity>
+        <activity android:name=".ViewInjectStatusActivity" />
+        <activity android:name=".ViewStatusActivity" />
+        <activity android:name=".ActivityInjectStatusActivity" />
+        <activity android:name=".InjectFragmentActivity" />
+        <activity android:name=".ViewBindingInjectFragmentActivity" />
+        <activity android:name=".RecyclerViewInjectStatusActivity" />
+        <activity android:name=".CustomStatusActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
