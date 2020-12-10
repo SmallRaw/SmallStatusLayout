@@ -8,7 +8,9 @@ import android.widget.TextView
 import com.smallraw.library.smallstatuslayout.*
 
 class StateError : StatePage() {
-    private lateinit var tvRetry: TextView
+    lateinit var tvErrorMsg: TextView
+    lateinit var imgError: ImageView
+    lateinit var tvRetry: TextView
 
     override fun onCreateStatePageView(
         context: Context,
@@ -19,8 +21,8 @@ class StateError : StatePage() {
     }
 
     override fun onConfigStateView(view: View, config: SmallStateConfig?) {
-        val tvErrorMsg = view.findViewById<TextView>(R.id.tv_error_msg)
-        val imgError = view.findViewById<ImageView>(R.id.img_error)
+        tvErrorMsg = view.findViewById(R.id.tv_error_msg)
+        imgError = view.findViewById(R.id.img_error)
         tvRetry = view.findViewById(R.id.tv_retry)
         (config ?: SmallStatus.globalConfig).apply {
             tvErrorMsg.setText(errorMsg)

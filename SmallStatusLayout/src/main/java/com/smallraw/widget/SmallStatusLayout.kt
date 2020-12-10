@@ -1,4 +1,4 @@
-package com.smallraw.library
+package com.smallraw.widget
 
 import android.animation.ValueAnimator
 import android.content.Context
@@ -35,9 +35,7 @@ class SmallStatusLayout : FrameLayout {
 
     private var mStatePool: MutableMap<Class<out StatePage>, StatePage> = mutableMapOf()
 
-    private var animator = ValueAnimator.ofFloat(0.0f, 1.0f).apply {
-        duration = mConfig?.alphaDuration ?: SmallStatus.globalConfig.alphaDuration
-    }
+    private var animator = createAnimator()
 
     fun init() {
         addView(mOriginalView, 0)
@@ -141,6 +139,12 @@ class SmallStatusLayout : FrameLayout {
             val state = clazz.newInstance()
             mStatePool[clazz] = state
             state
+        }
+    }
+
+    private fun createAnimator(): ValueAnimator {
+        return ValueAnimator.ofFloat(0.0f, 1.0f).apply {
+            duration = mConfig?.alphaDuration ?: SmallStatus.globalConfig.alphaDuration
         }
     }
 

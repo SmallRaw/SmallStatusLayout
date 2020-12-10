@@ -10,6 +10,8 @@ import androidx.annotation.DrawableRes
 import com.smallraw.library.smallstatuslayout.*
 
 class StateEmpty : StatePage() {
+    lateinit var tvEmptyMsg: TextView
+    lateinit var imgEmpty: ImageView
 
     override fun onCreateStatePageView(
         context: Context,
@@ -20,8 +22,8 @@ class StateEmpty : StatePage() {
     }
 
     override fun onConfigStateView(view: View, config: SmallStateConfig?) {
-        val tvEmptyMsg = view.findViewById<TextView>(R.id.tv_empty_msg)
-        val imgEmpty = view.findViewById<ImageView>(R.id.img_empty)
+        tvEmptyMsg = view.findViewById(R.id.tv_empty_msg)
+        imgEmpty = view.findViewById(R.id.img_empty)
 
         (config ?: SmallStatus.globalConfig).apply {
             tvEmptyMsg.setText(errorMsg)

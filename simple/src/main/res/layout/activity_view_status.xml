@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ViewStatusActivity">
 
-    <com.smallraw.library.SmallStatusLayout
+    <com.smallraw.widget.SmallStatusLayout
         android:id="@+id/layoutStatus"
         android:layout_width="0dp"
         android:layout_height="350dp"
@@ -22,7 +22,7 @@
             android:text="Success"
             android:textSize="24sp"
             android:textStyle="bold" />
-    </com.smallraw.library.SmallStatusLayout>
+    </com.smallraw.widget.SmallStatusLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"

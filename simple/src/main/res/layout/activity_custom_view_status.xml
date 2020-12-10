@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".ViewStatusActivity">
 
-    <com.smallraw.library.SmallStatusLayout
-        android:id="@+id/layoutStatus"
+    <FrameLayout
+        android:id="@+id/layout"
         android:layout_width="0dp"
         android:layout_height="350dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,7 +22,7 @@
             android:text="Success"
             android:textSize="24sp"
             android:textStyle="bold" />
-    </com.smallraw.library.SmallStatusLayout>
+    </FrameLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
