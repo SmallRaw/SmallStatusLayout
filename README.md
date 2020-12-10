@@ -185,3 +185,16 @@ val layoutStatus = SmallStatus.bindTarget(view)
 // 直接即可使用自定义的状态布局
 layoutStatus.show<StateCustom>()
 ```
+
+## 例子参考
+[使用布局方式](https://github.com/SmallRaw/SmallStatusLayout/blob/master/simple/src/main/java/com/smallraw/smallrawstatelayout/simple/ViewStatusActivity.kt)
+
+[使用低入侵方式](https://github.com/SmallRaw/SmallStatusLayout/blob/master/simple/src/main/java/com/smallraw/smallrawstatelayout/simple/ViewInjectStatusActivity.kt)
+
+[Activity 使用方式](https://github.com/SmallRaw/SmallStatusLayout/blob/master/simple/src/main/java/com/smallraw/smallrawstatelayout/simple/ActivityInjectStatusActivity.kt)
+
+[Fragment 使用方式](https://github.com/SmallRaw/SmallStatusLayout/blob/master/simple/src/main/java/com/smallraw/smallrawstatelayout/simple/InjectStatusFragment.kt)
+
+[ViewBinding Fragment 使用方式](https://github.com/SmallRaw/SmallStatusLayout/blob/master/simple/src/main/java/com/smallraw/smallrawstatelayout/simple/ViewBindingInjectStatusFragment.kt)
+
+[自定义 StatePage 使用方式](https://github.com/SmallRaw/SmallStatusLayout/blob/master/simple/src/main/java/com/smallraw/smallrawstatelayout/simple/CustomStatusActivity.kt)
