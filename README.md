@@ -4,6 +4,9 @@
 # 如何使用
 
 ## 引用依赖
+```
+implementation 'com.smallraw.library:SmallStatusLayout:0.1.0'
+```
 
 ## 简单使用
 
