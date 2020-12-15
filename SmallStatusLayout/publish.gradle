@@ -1,0 +1,19 @@
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'SmallStatusLayout'
+
+    publishedGroupId = 'com.smallraw.library'
+    artifactId = 'SmallStatusLayout'
+    libraryVersion = '0.1.1'
+
+    libraryName = 'SmallStatusLayout'
+    libraryDescription = '可入侵式状态库。方便易用，灵活。'
+    siteUrl = 'https://github.com/SmallRaw/SmallStatusLayout'
+    gitUrl = 'https://github.com/SmallRaw/SmallStatusLayout.git'
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+apply from: 'install.gradle'
+apply from: 'bintray.gradle'
