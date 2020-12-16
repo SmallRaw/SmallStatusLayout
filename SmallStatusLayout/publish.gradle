@@ -16,4 +16,6 @@ ext {
 }
 
 apply from: 'install.gradle'
+apply from: 'maven-sources.gradle'
 apply from: 'bintray.gradle'
+//apply from: 'github.gradle'

@@ -16,10 +16,22 @@ buildscript {
 }
 
 allprojects {
+    Properties properties = new Properties()
+    File configFile = project.rootProject.file('local.properties')
+    properties.load(configFile.newDataInputStream())
+
     repositories {
         google()
         jcenter()
         maven { url 'https://dl.bintray.com/quincysx/maven' }
+        maven {
+            name = "GithubPackages"
+            url = uri("https://maven.pkg.github.com/smallraw/SmallStatusLayout")
+            credentials {
+                username = System.getenv('GITHUB_USER') ?: properties.getProperty('GITHUB_USER')
+                password = System.getenv('GITHUB_TOKEN') ?: properties.getProperty('GITHUB_TOKEN')
+            }
+        }
     }
 }
 
