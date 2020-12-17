@@ -1,3 +1,5 @@
 rootProject.name = "SmallStatusLayout"
-include ':SmallStatusLayout'
+include ':smallstatus-layout'
 include ':simple'
+// 上传到 GitHub package 不能大写
+project(':smallstatus-layout').projectDir = new File("SmallStatusLayout")

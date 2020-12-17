@@ -14,6 +14,8 @@ String localProperty(propertyName) {
     return ""
 }
 
+// 上传到 GitHub package 的名字是项目名字。如本项目的 smallstatus-layout.
+// 不能大写，大写无法上传
 afterEvaluate {
     publishing {
         repositories {
